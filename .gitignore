@@ -36,4 +36,3 @@ bin/
 ### Internal auditorium materials ###
 src/mk/ukim/finki/aud/**/old/
 src/mk/ukim/finki/aud/**/prep/
-lab/

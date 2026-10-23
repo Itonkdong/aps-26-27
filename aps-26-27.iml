@@ -16,7 +16,6 @@
       <excludeFolder url="file://$MODULE_DIR$/src/mk/ukim/finki/aud/aud2/old" />
       <excludeFolder url="file://$MODULE_DIR$/src/mk/ukim/finki/aud/template/old" />
       <excludeFolder url="file://$MODULE_DIR$/src/mk/ukim/finki/aud/template/prep" />
-      <excludeFolder url="file://$MODULE_DIR$/src/mk/ukim/finki/lab" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

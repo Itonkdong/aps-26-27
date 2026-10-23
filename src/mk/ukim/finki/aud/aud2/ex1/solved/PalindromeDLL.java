@@ -1,6 +1,7 @@
 package mk.ukim.finki.aud.aud2.ex1.solved;
 
 import mk.ukim.finki.dataStructures.dll.DLL;
+import mk.ukim.finki.dataStructures.dll.DLLNode;
 
 import java.util.LinkedList;
 
@@ -47,8 +48,20 @@ public class PalindromeDLL
      */
     public int isItPalindrome(DLL<Integer> list)
     {
-        // TODO: Implement this method; 0 is a placeholder return value.
-        return 0;
+        DLLNode<Integer> first = list.getFirst();
+        DLLNode<Integer> last = list.getLast();
+
+        while (first != null)
+        {
+            if (first.element != last.element)
+            {
+                return -1;
+            }
+
+            first = first.succ;
+            last = last.pred;
+        }
+        return  1;
     }
 
     /**

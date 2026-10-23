@@ -1,6 +1,7 @@
 package mk.ukim.finki.aud.aud1.ex3.solved;
 
 import mk.ukim.finki.dataStructures.sll.SLL;
+import mk.ukim.finki.dataStructures.sll.SLLNode;
 
 /**
  * <h2>Exercise 3: Reversing a Singly Linked List</h2>
@@ -34,6 +35,23 @@ public class MirrorList<E>
      */
     public void mirror(SLL<E> list)
     {
-        // TODO: Implement the link reversal in this class.
+        SLLNode<E> iterator = list.getFirst();
+        if (iterator == null || iterator.succ == null)
+        {
+            return;
+        }
+        SLLNode<E> prev = null;
+
+        while (iterator != null)
+        {
+            SLLNode<E> save = iterator.succ;
+            iterator.succ = prev;
+
+            prev = iterator;
+            iterator = save;
+        }
+
+        list.setFirst(prev);
+
     }
 }

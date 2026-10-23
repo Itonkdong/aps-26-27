@@ -41,7 +41,21 @@ public class ChangeArrays<E>
      */
     public void compareAndChangeArrays(Array<E> niza1, Array<E> niza2)
     {
-        // TODO: Implement this method.
+        // [10, 7] and [5, 13, 3]
+
+        int size = niza1.getSize();
+        for (int i = 0; i < size; i++)
+        {
+            E elementAtArray1 = niza1.get(i);
+            E elementAtArray2 = niza2.get(i);
+            if (elementAtArray1.equals(elementAtArray2))
+            {
+                niza1.delete(i);
+                niza2.delete(i);
+                size --;
+                i--;
+            }
+        }
     }
 
     /**
@@ -53,6 +67,18 @@ public class ChangeArrays<E>
      */
     public void compareAndChangeArrays(ArrayList<E> niza1, ArrayList<E> niza2)
     {
-        // TODO: Implement this method.
+        int size = niza1.size();
+        for (int i = 0; i < size; i++)
+        {
+            E element1 = niza1.get(i);
+            E element2 = niza2.get(i);
+            if (element1.equals(element2))
+            {
+                niza1.remove(i);
+                niza2.remove(i);
+                i --;
+                size --;
+            }
+        }
     }
 }

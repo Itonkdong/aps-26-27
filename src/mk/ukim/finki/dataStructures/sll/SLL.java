@@ -18,11 +18,11 @@ public class SLL<E>
     public int size()
     {
         int listSize = 0;
-        SLLNode<E> tmp = first;
-        while (tmp != null)
+        SLLNode<E> iterator = first;
+        while (iterator != null)
         {
             listSize++;
-            tmp = tmp.succ;
+            iterator = iterator.succ;
         }
         return listSize;
     }
@@ -48,23 +48,19 @@ public class SLL<E>
 
     public void insertFirst(E o)
     {
-        SLLNode<E> ins = new SLLNode<E>(o, null);
-        ins.succ = first;
-        //SLLNode<E> ins = new SLLNode<E>(o, first);
+        SLLNode<E> ins = new SLLNode<E>(o, first);
         first = ins;
     }
 
     public void insertAfter(E o, SLLNode<E> node)
     {
-        if (node != null)
-        {
-            SLLNode<E> ins = new SLLNode<E>(o, node.succ);
-            node.succ = ins;
-        }
-        else
+        if (node == null)
         {
             System.out.println("Dadenot jazol e null");
+            return;
         }
+        SLLNode<E> ins = new SLLNode<E>(o, node.succ);
+        node.succ = ins;
     }
 
     public void insertBefore(E o, SLLNode<E> before)
@@ -72,24 +68,25 @@ public class SLL<E>
 
         if (first != null)
         {
-            SLLNode<E> tmp = first;
+            SLLNode<E> iterator = first;
             if (first == before)
             {
                 this.insertFirst(o);
                 return;
             }
-            //ako first!=before
-            while (tmp.succ != before && tmp.succ != null)
-                tmp = tmp.succ;
-            if (tmp.succ == before)
+
+            while (iterator != null)
             {
-                tmp.succ = new SLLNode<E>(o, before);
-                ;
+                if (iterator.succ == before)
+                {
+                    SLLNode<E> newNode = new SLLNode<>(o, before);
+                    iterator.succ = newNode;
+                    return;
+                }
+                iterator = iterator.succ;
             }
-            else
-            {
-                System.out.println("Elementot ne postoi vo listata");
-            }
+
+            System.out.println("Elementot ne postoi vo listata");
         }
         else
         {
@@ -99,16 +96,22 @@ public class SLL<E>
 
     public void insertLast(E o)
     {
-        if (first != null)
-        {
-            SLLNode<E> tmp = first;
-            while (tmp.succ != null)
-                tmp = tmp.succ;
-            tmp.succ = new SLLNode<E>(o, null);
-        }
-        else
+        if (first == null)
         {
             insertFirst(o);
+            return;
+        }
+
+        SLLNode<E> iterator = first;
+
+        while (true)
+        {
+            if (iterator.succ == null)
+            {
+                iterator.succ = new SLLNode<>(o, null);
+                return;
+            }
+            iterator = iterator.succ;
         }
     }
 
@@ -131,22 +134,23 @@ public class SLL<E>
     {
         if (first != null)
         {
-            SLLNode<E> tmp = first;
+            SLLNode<E> iterator = first;
             if (first == node)
             {
-                return this.deleteFirst();
+                E tmp = this.deleteFirst();
+                return tmp;
             }
-            while (tmp.succ != node && tmp.succ.succ != null)
-                tmp = tmp.succ;
-            if (tmp.succ == node)
+            while (true)
             {
-                tmp.succ = tmp.succ.succ;
-                return node.element;
-            }
-            else
-            {
-                System.out.println("Elementot ne postoi vo listata");
-                return null;
+                SLLNode<E> nextNode = iterator.succ;
+                if (nextNode == node)
+                {
+                    E element = nextNode.element;
+                    //check if we are deleting the last node
+                    iterator.succ = nextNode.succ;
+                    return element;
+                }
+                iterator = iterator.succ;
             }
         }
         else
@@ -155,6 +159,11 @@ public class SLL<E>
             return null;
         }
 
+    }
+
+    private boolean isLast(SLLNode<E> node)
+    {
+        return node.succ == null;
     }
 
     public SLLNode<E> getFirst()
@@ -176,17 +185,17 @@ public class SLL<E>
     {
         if (first != null)
         {
-            SLLNode<E> tmp = first;
-            while (!tmp.element.equals(o) && tmp.succ != null)
-                tmp = tmp.succ;
-            if (tmp.element.equals(o))
+            SLLNode<E> iterator = first;
+            while (iterator != null)
             {
-                return tmp;
+                if (iterator.element.equals(o))
+                {
+                    return iterator;
+                }
+
+                iterator = iterator.succ;
             }
-            else
-            {
-                System.out.println("Elementot ne postoi vo listata");
-            }
+            return null;
         }
         else
         {
@@ -229,4 +238,5 @@ public class SLL<E>
             first = newsucc;
         }
     }
+
 }

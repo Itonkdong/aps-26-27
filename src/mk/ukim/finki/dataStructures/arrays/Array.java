@@ -15,40 +15,44 @@ public class Array<E>
 
     public void insertLast(E o)
     {
-        //check if there is enough capacity, and if not - resize
         if (size + 1 > data.length)
+        {
             this.resize();
-        data[size++] = o;
+        }
+
+        data[size] = o;
+        size++;
     }
 
     public void insert(int position, E o)
     {
         // before all we check if position is within range
-        if (position >= 0 && position <= size)
-        {
-            //check if there is enough capacity, and if not - resize
-            if (size + 1 > data.length)
-                this.resize();
-            //copy the data, before doing the insertion
-            for (int i = size; i > position; i--)
-            {
-                data[i] = data[i - 1];
-            }
-            data[position] = o;
-            size++;
-        }
-        else
+        if (position < 0 || position > size)
         {
             System.out.println("Ne mozhe da se vmetne element na taa pozicija");
+            return;
         }
+        //check if there is enough capacity, and if not - resize
+        if (size + 1 > data.length)
+            this.resize();
+        //copy the data, before doing the insertion
+        for (int i = size; i > position; i--)
+        {
+            data[i] = data[i - 1];
+        }
+        data[position] = o;
+        size++;
     }
 
     public void set(int position, E o)
     {
-        if (position >= 0 && position < size)
-            data[position] = o;
-        else
+        if (position < 0 || position >= size)
+        {
             System.out.println("Ne moze da se vmetne element na dadenata pozicija");
+            return;
+        }
+
+        data[position] = o;
     }
 
     public E get(int position)

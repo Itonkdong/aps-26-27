@@ -1,6 +1,7 @@
 package mk.ukim.finki.aud.aud1.ex2.solved;
 
 import mk.ukim.finki.dataStructures.sll.SLL;
+import mk.ukim.finki.dataStructures.sll.SLLNode;
 
 /**
  * <h2>Exercise 2: Counting Even Elements in a Singly Linked List</h2>
@@ -36,7 +37,16 @@ public class EvenNumbersSLL
      */
     public int evenNumbers(SLL<Integer> list)
     {
-        // TODO: Implement this method; 0 is a placeholder return value.
-        return 0;
+        int numEven = 0 ;
+        SLLNode<Integer> iterator = list.getFirst();
+        while (iterator != null)
+        {
+            if (iterator.element % 2 == 0)
+            {
+                numEven ++ ;
+            }
+            iterator = iterator.succ;
+        }
+        return numEven;
     }
 }

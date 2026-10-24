@@ -1,12 +1,12 @@
 package mk.ukim.finki.aud.aud2.ex2.solved;
 
-import mk.ukim.finki.dataStructures.counteddll.CountedDLL;
+import mk.ukim.finki.dataStructures.dll.DLL;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        CountedDLL<Integer> list = new CountedDLL<>();
+        DLL<Integer> list = new DLL<>();
         list.insertLast(4);
         list.insertLast(9);
         list.insertLast(4);
@@ -15,13 +15,13 @@ public class Main
         list.insertLast(8);
         list.insertLast(9);
 
-        System.out.println("List before removing duplicates and counting occurrences:");
+        System.out.println("List before removing duplicates:");
         System.out.println(list.toString());
 
         RemoveDuplicates<Integer> exercise = new RemoveDuplicates<>();
-        exercise.removeDuplicatesAndCount(list);
+        exercise.removeDuplicates(list);
 
-        System.out.println("List after removing duplicates and counting occurrences:");
+        System.out.println("List after removing duplicates:");
         System.out.println(list.toString());
     }
 }

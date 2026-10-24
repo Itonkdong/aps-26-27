@@ -15,35 +15,27 @@ If you copy files manually, update their folder paths, `package` declarations, a
 
 ## Repository layout
 
-All Java packages are under `src/mk/ukim/finki/`:
+All Java packages are under `src/mk/ukim/finki/`. The following example illustrates the layout using placeholder names:
 
 ```text
 aud/
-├── aud0/                  Introductory Java examples
-├── aud1/
-│   ├── ex1/
-│   │   ├── starters/      Starting point for your own solution
-│   │   └── solved/        Code developed during class
-│   ├── ex2/
-│   ├── ex3/
-│   └── ex4/
-├── aud2/
-│   ├── ex1/               Palindrome checking
-│   ├── ex2/               Duplicate removal and occurrence counting
-│   └── ex3/               Doubly linked list reversal
+├── audN/
+│   └── exN/
+│       ├── starters/      Starting point for your own solution
+│       │   ├── Main.java
+│       │   └── ExerciseName.java
+│       └── solved/        Code developed during class
 └── presentations/         Classroom presentations
 dataStructures/
-├── arrays/
-├── sll/
-├── dll/
-└── counteddll/
+└── structure/
+    ├── Structure.java
+    └── tester/
+        └── StructureTester.java
 ```
 
 Each `audN` package represents a classroom session, with individual exercises in `exN` packages. Within each exercise, `Main` prepares the input and calls the methods in a separate exercise class. The `solved` package starts with the same scaffold and is completed during class.
 
 The `dataStructures` package contains reusable implementations. Each structure has a `tester` subpackage with a runnable example demonstrating its methods.
-
-The `counteddll` package provides a separate doubly linked list whose nodes store occurrence counts, used in `aud2.ex2`.
 
 ## Credits
 

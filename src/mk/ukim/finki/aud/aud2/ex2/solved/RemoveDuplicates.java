@@ -1,49 +1,43 @@
 package mk.ukim.finki.aud.aud2.ex2.solved;
 
-import mk.ukim.finki.dataStructures.counteddll.CountedDLL;
+import mk.ukim.finki.dataStructures.dll.DLL;
 
 /**
- * <h2>Exercise 2: Removing Duplicate Nodes and Counting Occurrences</h2>
+ * <h2>Exercise 2: Removing Duplicate Nodes</h2>
  *
  * <h3>Description</h3>
  * <p>Write a program that removes duplicate nodes from an arbitrary doubly
- * linked list. In addition to its element, each node stores the number of
- * occurrences of that element.</p>
+ * linked list. Keep the first occurrence of each distinct element and
+ * preserve the order of the remaining nodes.</p>
  *
  * <h3>Data Structure</h3>
- * <p>Use {@link CountedDLL}, whose nodes have an {@code occurrenceCount}
- * field initialized to 1. The list's string representation includes the
- * occurrence count for each node.</p>
- *
- * <h3>Expected Behavior</h3>
- * <p>Keep one node for each distinct element, in order of first appearance,
- * and record its total number of occurrences in the original list.
- * The method modifies the given list.</p>
+ * <p>Use the shared {@link DLL} implementation. The method modifies the
+ * given list.</p>
  *
  * <h3>Example from Main</h3>
  * <pre>
  * Input elements: 4, 9, 4, 4, 5, 8, 9
  *
- * Expected list:
- * 4 (count: 3)&lt;-&gt;9 (count: 2)&lt;-&gt;5 (count: 1)&lt;-&gt;8 (count: 1)
+ * Expected list after implementation:
+ * 4&lt;-&gt;9&lt;-&gt;5&lt;-&gt;8
  * </pre>
  *
  * <h3>Source</h3>
- * <p>Arrays and Lists 2 - Doubly Linked Lists, classroom session 2,
- * exercise 2 (02_Nizi_Listi_2.pdf, pages 20-23).</p>
+ * <p>Adapted for the standard DLL from Arrays and Lists 2 - Doubly Linked
+ * Lists, classroom session 2, exercise 2
+ * (02_Nizi_Listi_2.pdf, pages 20-23).</p>
  *
- * @param <E> the type of elements in the list
+ * @param <E> the comparable type of elements in the list
  */
-public class RemoveDuplicates<E>
+public class RemoveDuplicates<E extends Comparable<E>>
 {
     /**
-     * Removes duplicate nodes and updates the occurrence counts of the
-     * remaining nodes.
+     * Removes duplicate nodes while preserving each element's first occurrence.
      *
-     * @param list the list containing the elements to group and count
+     * @param list the list from which to remove duplicate nodes
      */
-    public void removeDuplicatesAndCount(CountedDLL<E> list)
+    public void removeDuplicates(DLL<E> list)
     {
-        // TODO: Implement duplicate removal and occurrence counting.
+        // TODO: Implement duplicate removal.
     }
 }

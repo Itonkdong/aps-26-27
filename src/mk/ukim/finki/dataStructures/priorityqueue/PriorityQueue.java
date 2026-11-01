@@ -7,7 +7,8 @@ import java.util.NoSuchElementException;
 
 
 /**
- * A linked priority queue that removes the smallest element first.
+ * A doubly linked priority queue. Natural order removes the smallest element
+ * first; reverse order removes the largest element first.
  *
  * @param <E> the type of elements stored in the structure
  */
@@ -16,7 +17,7 @@ public class PriorityQueue<E extends Comparable<E>> implements Queue<E>
 
     // Queue representation:
     // length stores the number of elements.
-    // Elements are stored in singly linked nodes.
+    // Elements are stored in doubly linked nodes.
     // front and rear point to the first and last nodes.
     DLLNode<E> front, rear;
     int length;
@@ -49,13 +50,13 @@ public class PriorityQueue<E extends Comparable<E>> implements Queue<E>
 
     public E peek()
     {
-        // Return the front element without removing it.
+        // Return the highest-priority element without removing it.
         if (isEmpty())
         {
             throw new NoSuchElementException();
         }
 
-        return front.element;
+        return order == PriorityQueueOrder.NATURAL ? front.element : rear.element;
     }
 
     public void clear()
@@ -78,6 +79,7 @@ public class PriorityQueue<E extends Comparable<E>> implements Queue<E>
         else if (latest.element.compareTo(front.element) < 0)
         {
             latest.succ = front;
+            front.pred = latest;
             front = latest;
         }
         else
@@ -108,7 +110,7 @@ public class PriorityQueue<E extends Comparable<E>> implements Queue<E>
 
     public E dequeue()
     {
-        // Remove and return the front element.
+        // Remove and return the highest-priority element.
         if (isEmpty())
         {
             throw new NoSuchElementException();
@@ -149,20 +151,19 @@ public class PriorityQueue<E extends Comparable<E>> implements Queue<E>
 
     public String toString()
     {
-        DLLNode<E> current = front;
+        boolean naturalOrder = order == PriorityQueueOrder.NATURAL;
+        DLLNode<E> current = naturalOrder ? front : rear;
         StringBuilder s = new StringBuilder();
         while (current != null)
         {
+            if (s.length() > 0)
+            {
+                s.append(" ");
+            }
             s.append(current.element);
-            s.append(" ");
-            current = current.succ;
+            current = naturalOrder ? current.succ : current.pred;
         }
 
-        if (order == PriorityQueueOrder.REVERSE)
-        {
-            return s.reverse().substring(1);
-        }
-
-        return s.substring(0, s.length() - 1);
+        return s.toString();
     }
 }

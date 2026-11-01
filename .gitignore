@@ -36,4 +36,8 @@ bin/
 ### Internal auditorium materials ###
 src/mk/ukim/finki/aud/**/old/
 src/mk/ukim/finki/aud/**/prep/
+
+### Internal focus lab materials ###
+src/mk/ukim/finki/focusLab/**/old/
+src/mk/ukim/finki/focusLab/**/prep/
 aps-26-27.iml

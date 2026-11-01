@@ -3,6 +3,8 @@ package mk.ukim.finki.aud.aud3.ex1.solved;
 import mk.ukim.finki.dataStructures.stack.ArrayStack;
 import mk.ukim.finki.dataStructures.stack.LinkedStack;
 
+import java.util.Stack;
+
 /**
  * <h2>Exercise 1: Validating Brackets in an Expression</h2>
  *
@@ -48,8 +50,33 @@ public class BracketValidator
      */
     public boolean hasValidBracketsArray(String expression)
     {
-        // TODO: Implement this method; false is a placeholder return value.
-        return false;
+        Stack<String> stack = new Stack<>();
+        String[] chars = expression.split("");
+        for (String aChar : chars)
+        {
+            if (aChar.equals("(") || aChar.equals("[") || aChar.equals("{"))
+            {
+                stack.push(aChar);
+                continue;
+            }
+
+            if (aChar.equals(")") || aChar.equals("]") || aChar.equals("}"))
+            {
+                if (stack.empty())
+                {
+                    return  false;
+                }
+
+                if (!areMatching(aChar, stack.pop()))
+                {
+                    return false;
+                }
+
+            }
+        }
+
+        return stack.empty();
+
     }
 
     /**
@@ -71,9 +98,23 @@ public class BracketValidator
      * @param right a closing bracket
      * @return whether the brackets have matching types
      */
-    public boolean areMatching(char left, char right)
+    public boolean areMatching(String left, String right)
     {
-        // TODO: Implement this method; false is a placeholder return value.
+        if (left.equals("(") && right.equals(")"))
+        {
+            return true;
+        }
+
+        if (left.equals("[") && right.equals("]"))
+        {
+            return true;
+        }
+
+        if (left.equals("{") && right.equals("}"))
+        {
+            return true;
+        }
+
         return false;
     }
 }

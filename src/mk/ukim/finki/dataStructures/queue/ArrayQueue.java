@@ -41,10 +41,13 @@ public class ArrayQueue<E> implements Queue<E>
     public E peek()
     {
         // Return the front element without removing it.
-        if (length > 0)
-            return elems[front];
-        else
+        if (isEmpty())
+        {
             throw new NoSuchElementException();
+        }
+
+        return elems[front];
+
     }
 
     public void clear()
@@ -75,7 +78,7 @@ public class ArrayQueue<E> implements Queue<E>
     public E dequeue()
     {
         // Remove and return the front element.
-        if (length <= 0)
+        if (isEmpty())
         {
             throw new NoSuchElementException();
         }

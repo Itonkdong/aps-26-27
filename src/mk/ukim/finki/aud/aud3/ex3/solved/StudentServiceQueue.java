@@ -59,7 +59,20 @@ public class StudentServiceQueue
      */
     public Student iterateStudentsQueue(ArrayQueue<Student> studentsQueue)
     {
-        // TODO: Implement this method; null is a placeholder return value.
+        double totalTimeLeft = 3 * 60;
+        while (!studentsQueue.isEmpty())
+        {
+
+            Student student = studentsQueue.peek();
+            if (totalTimeLeft - student.minutes < 0 )
+            {
+                return student;
+            }
+            totalTimeLeft -= student.minutes;
+            studentsQueue.dequeue();
+            System.out.println("Processing student" + student.index);
+        }
+
         return null;
     }
 }

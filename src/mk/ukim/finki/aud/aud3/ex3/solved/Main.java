@@ -2,6 +2,9 @@ package mk.ukim.finki.aud.aud3.ex3.solved;
 
 import mk.ukim.finki.dataStructures.queue.ArrayQueue;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Main
 {
     public static void main(String[] args)
@@ -50,5 +53,13 @@ public class Main
             System.out.println("Number of unserved students: " + studentsQueue.size());
         }
         System.out.println();
+
+
+         Queue<String> queue = new LinkedList<>();
+         queue.offer("Test");
+         queue.poll();
+         queue.peek();
+         queue.isEmpty();
+         queue.size();
     }
 }

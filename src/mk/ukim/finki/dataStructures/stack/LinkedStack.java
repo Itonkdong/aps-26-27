@@ -51,7 +51,7 @@ public class LinkedStack<E> implements Stack<E>
     public E peek()
     {
         // Return the top element without removing it.
-        if (top == null)
+        if (isEmpty())
             throw new NoSuchElementException();
         return top.element;
     }
@@ -72,11 +72,11 @@ public class LinkedStack<E> implements Stack<E>
     public E pop()
     {
         // Remove and return the top element.
-        if (top == null)
+        if (isEmpty())
             throw new NoSuchElementException();
         E topElem = top.element;
-        size--;
         top = top.succ;
+        size--;
         return topElem;
     }
 

@@ -1,7 +1,7 @@
 package mk.ukim.finki.aud.aud3.ex3.solved;
 
 /** A student waiting in the service queue, with the required service time. */
-public class Student
+    public class Student
 {
     public String index;
     public int minutes;

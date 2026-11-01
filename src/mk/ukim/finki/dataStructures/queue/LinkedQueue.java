@@ -41,8 +41,9 @@ public class LinkedQueue<E> implements Queue<E>
     public E peek()
     {
         // Return the front element without removing it.
-        if (front == null)
+        if (isEmpty())
             throw new NoSuchElementException();
+
         return front.element;
     }
 
@@ -57,7 +58,7 @@ public class LinkedQueue<E> implements Queue<E>
     {
         // Insert x into the queue.
         SLLNode<E> latest = new SLLNode<E>(x, null);
-        if (rear == null)
+        if (isEmpty())
         {
             front = rear = latest;
         }
@@ -72,13 +73,14 @@ public class LinkedQueue<E> implements Queue<E>
     public E dequeue()
     {
         // Remove and return the front element.
-        if (front == null)
+        if (isEmpty())
         {
             throw new NoSuchElementException();
         }
+
         E frontmost = front.element;
         front = front.succ;
-        if (front == null)
+        if (isEmpty())
         {
             rear = null;
         }

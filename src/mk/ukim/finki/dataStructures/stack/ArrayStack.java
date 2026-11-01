@@ -29,7 +29,7 @@ public class ArrayStack<E> implements Stack<E>
     public E peek()
     {
         // Return the top element without removing it.
-        if (depth == 0)
+        if (isEmpty())
             throw new NoSuchElementException();
         return elems[depth - 1];
     }
@@ -51,6 +51,7 @@ public class ArrayStack<E> implements Stack<E>
         {
             throw new ArrayIndexOutOfBoundsException();
         }
+
         elems[depth] = x;
         depth++;
     }
@@ -66,6 +67,7 @@ public class ArrayStack<E> implements Stack<E>
         // Remove and return the top element.
         if (depth == 0)
             throw new NoSuchElementException();
+
         E topmost = elems[depth - 1];
         elems[depth - 1] = null;
         depth--;

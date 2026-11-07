@@ -35,8 +35,93 @@ public class NonAttackingQueens
      */
     public boolean areAttacking(int row1, int column1, int row2, int column2)
     {
-        // TODO: Implement this method.
-        return false;
+        if (row1 == row2 && column1 == column2) return  true;
+
+        if (row1 == row2)
+        {
+            return true;
+        }
+
+        if (column1 == column2)
+        {
+            return true;
+        }
+
+        int checkRow = row1 + 1 ;
+        int checkCol = column1 + 1;
+
+        while (true)
+        {
+            if (checkCol < 0 || checkRow < 0 || checkRow >= 8 || checkCol >=8)
+            {
+                break;
+            }
+
+            if (row2 == checkRow && column2 == checkCol)
+            {
+                return true;
+            }
+            checkCol += 1;
+            checkRow += 1;
+        }
+
+        checkRow = row1 - 1 ;
+        checkCol = column1 + 1;
+
+        while (true)
+        {
+            if (checkCol < 0 || checkRow < 0 || checkRow >= 8 || checkCol >=8)
+            {
+                break;
+            }
+
+            if (row2 == checkRow && column2 == checkCol)
+            {
+                return true;
+            }
+            checkCol += 1;
+            checkRow -= 1;
+        }
+
+
+        checkRow = row1 + 1 ;
+        checkCol = column1 - 1;
+
+        while (true)
+        {
+            if (checkCol < 0 || checkRow < 0 || checkRow >= 8 || checkCol >=8)
+            {
+                break;
+            }
+
+            if (row2 == checkRow && column2 == checkCol)
+            {
+                return true;
+            }
+            checkCol -= 1;
+            checkRow += 1;
+        }
+
+        checkRow = row1 - 1 ;
+        checkCol = column1 - 1;
+
+        while (true)
+        {
+            if (checkCol < 0 || checkRow < 0 || checkRow >= 8 || checkCol >=8)
+            {
+                break;
+            }
+
+            if (row2 == checkRow && column2 == checkCol)
+            {
+                return true;
+            }
+            checkCol -= 1;
+            checkRow -= 1;
+        }
+
+        return  false;
+
     }
 
     /**
@@ -46,7 +131,24 @@ public class NonAttackingQueens
      */
     public int countPlacements()
     {
-        // TODO: Implement this method.
-        return 0;
+        int countNonAttacking = 0;
+        for (int row1 = 0; row1 < 8; row1++)
+        {
+            for (int col1 = 0; col1 < 8; col1++)
+            {
+                for (int row2 = 0 ; row2 < 8; row2++)
+                {
+                    for (int col2 =  0; col2 < 8; col2++)
+                    {
+                        if (!(areAttacking(row1, col1, row2, col2)))
+                        {
+                            countNonAttacking ++;
+                        }
+                    }
+                }
+            }
+        }
+
+        return countNonAttacking;
     }
 }

@@ -52,21 +52,64 @@ public class FractionalKnapsack
      */
     public void sortByRatio(double[] profits, double[] weights)
     {
-        // TODO: Implement this method.
+        double[] ratio = new double[profits.length];
+        for (int i = 0; i < ratio.length; i++)
+        {
+            ratio[i] = profits[i] / weights[i];
+        }
+
+        for (int i = 0; i < ratio.length; i++)
+        {
+            for (int j = i + 1; j < ratio.length; j++)
+            {
+                if (ratio[i] < ratio[j])
+                {
+                    double tmp = ratio[i];
+                    ratio[i] = ratio[j];
+                    ratio[j] = tmp;
+
+                    tmp = profits[i];
+                    profits[i] = profits[j];
+                    profits[j] = tmp;
+
+                    tmp = weights[i];
+                    weights[i] = weights[j];
+                    weights[j] = tmp;
+                }
+            }
+        }
     }
 
     /**
      * Selects fractions of items to maximize profit within the capacity.
      *
-     * @param profits the item profits; this array may be reordered
-     * @param weights the corresponding positive weights; this array may be reordered
-     * @param capacity the available nonnegative weight capacity
+     * @param profits   the item profits; this array may be reordered
+     * @param weights   the corresponding positive weights; this array may be reordered
+     * @param capacity  the available nonnegative weight capacity
      * @param fractions the output fractions, with the same length as profits
      * @return the maximum total profit
      */
     public double maximizeProfit(double[] profits, double[] weights, double capacity, double[] fractions)
     {
-        // TODO: Implement this method.
-        return 0.0;
+        double totalProfit = 0;
+        sortByRatio(profits, weights);
+        for (int i = 0; i < profits.length; i++)
+        {
+            if (weights[i] <= capacity)
+            {
+                fractions[i] = 1;
+                capacity -= weights[i];
+                totalProfit += fractions[i] * profits[i];
+            }
+            else
+            {
+                fractions[i] = capacity / weights[i];
+                totalProfit += fractions[i] * profits[i];
+                break;
+
+            }
+
+        }
+        return totalProfit;
     }
 }

@@ -32,42 +32,42 @@ public class MergeSort
     private void merge(int[] values, int left, int middle, int right)
     {
         int[] temporary = new int[right - left + 1];
-        int i = left;
-        int j = middle + 1;
-        int k = 0;
+        int leftArrayIndex = left;
+        int rightArrayIndex = middle + 1;
+        int sortedArrayIndex = 0;
 
-        while (i <= middle && j <= right)
+        while (leftArrayIndex <= middle && rightArrayIndex <= right)
         {
-            if (values[i] < values[j])
+            if (values[leftArrayIndex] < values[rightArrayIndex])
             {
-                temporary[k] = values[i];
-                i++;
+                temporary[sortedArrayIndex] = values[leftArrayIndex];
+                leftArrayIndex++;
             }
             else
             {
-                temporary[k] = values[j];
-                j++;
+                temporary[sortedArrayIndex] = values[rightArrayIndex];
+                rightArrayIndex++;
             }
-            k++;
+            sortedArrayIndex++;
         }
 
-        while (i <= middle)
+        while (leftArrayIndex <= middle)
         {
-            temporary[k] = values[i];
-            i++;
-            k++;
+            temporary[sortedArrayIndex] = values[leftArrayIndex];
+            leftArrayIndex++;
+            sortedArrayIndex++;
         }
 
-        while (j <= right)
+        while (rightArrayIndex <= right)
         {
-            temporary[k] = values[j];
-            j++;
-            k++;
+            temporary[sortedArrayIndex] = values[rightArrayIndex];
+            rightArrayIndex++;
+            sortedArrayIndex++;
         }
 
-        for (k = 0; k < temporary.length; k++)
+        for (int i = 0; i < temporary.length; i++)
         {
-            values[left + k] = temporary[k];
+            values[left + i] = temporary[i];
         }
     }
 }

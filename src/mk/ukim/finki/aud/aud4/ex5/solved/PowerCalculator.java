@@ -24,26 +24,42 @@ public class PowerCalculator
     /**
      * Calculates a power using divide and conquer.
      *
-     * @param base the integer base
+     * @param base     the integer base
      * @param exponent the nonnegative exponent
      * @return base raised to exponent
      */
     public int pow(int base, int exponent)
     {
-        // TODO: Implement this method.
-        return 0;
+        if (exponent == 0) return 1;
+        if (exponent == 1) return base;
+
+        int half = exponent / 2;
+        int otherHalf = exponent - half;
+
+        return pow(base, otherHalf) * pow(base, half);
     }
 
     /**
      * Calculates a power using the second variant.
      *
-     * @param base the integer base
+     * @param base     the integer base
      * @param exponent the nonnegative exponent
      * @return base raised to exponent
      */
     public int powWithRepeatedCalls(int base, int exponent)
     {
-        // TODO: Implement this method.
-        return 0;
+        if (exponent == 0) return 1;
+        if (exponent == 1) return base;
+
+        int half = exponent / 2;
+        int leftResult = powWithRepeatedCalls(base, half);
+        if (exponent % 2 == 0)
+        {
+            return leftResult * leftResult;
+        }
+        else
+        {
+            return leftResult * leftResult * base;
+        }
     }
 }

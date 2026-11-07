@@ -35,7 +35,19 @@ public class CoinChange
      */
     public void sortCoins(int[] coins)
     {
-        // TODO: Implement this method.
+        for (int i = 0; i < coins.length; i++)
+        {
+            for (int j = i + 1; j < coins.length; j++)
+            {
+                if (coins[i] < coins[j])
+                {
+                    int tmp = coins[i];
+                    coins[i] = coins[j];
+                    coins[j] = tmp;
+                }
+            }
+        }
+
     }
 
     /**
@@ -49,7 +61,27 @@ public class CoinChange
      */
     public int minimumCoins(int[] coins, int sum, int[] coinCounts)
     {
-        // TODO: Implement this method.
-        return 0;
+        sortCoins(coins);
+        int coinIndex = 0;
+
+        while (sum > 0)
+        {
+            int currentCoin = coins[coinIndex];
+            if (currentCoin > sum)
+            {
+                coinIndex ++;
+                continue;
+            }
+            sum -= currentCoin;
+            coinCounts[coinIndex] += 1;
+        }
+
+        int totalCoint = 0;
+        for (int coinCount : coinCounts)
+        {
+            totalCoint += coinCount;
+        }
+
+        return totalCoint;
     }
 }

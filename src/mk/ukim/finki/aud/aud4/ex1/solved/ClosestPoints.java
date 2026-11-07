@@ -1,5 +1,7 @@
 package mk.ukim.finki.aud.aud4.ex1.solved;
 
+import mk.ukim.finki.aud.aud4.ex1.solved.Point;
+
 /**
  * <h2>Exercise 1: Finding the Closest Pair of Points</h2>
  *
@@ -23,14 +25,13 @@ public class ClosestPoints
     /**
      * Calculates the Euclidean distance between two points.
      *
-     * @param first the first point
+     * @param first  the first point
      * @param second the second point
      * @return the distance between the points
      */
     public double distance(Point first, Point second)
     {
-        // TODO: Implement this method.
-        return 0.0;
+        return Math.sqrt(Math.pow(first.x - second.x, 2) + Math.pow(first.y - second.y, 2));
     }
 
     /**
@@ -41,7 +42,19 @@ public class ClosestPoints
      */
     public double minimumDistance(Point[] points)
     {
-        // TODO: Implement this method.
-        return 0.0;
+        double minDistance = 100000;
+        for (int i = 0; i < points.length; i++)
+        {
+            for (int j = i + 1; j < points.length; j++)
+            {
+                double distance = distance(points[i], points[j]);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                }
+            }
+        }
+
+        return minDistance;
     }
 }

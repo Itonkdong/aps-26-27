@@ -31,11 +31,18 @@ dataStructures/
     ├── Structure.java
     └── tester/
         └── StructureTester.java
+algorithms/
+└── algorithm/
+    ├── Algorithm.java
+    └── tester/
+        └── AlgorithmTester.java
 ```
 
 Each `audN` package represents a classroom session, with individual exercises in `exN` packages. Within each exercise, `Main` prepares the input and calls the methods in a separate exercise class. The `solved` package starts with the same scaffold and is completed during class.
 
 The `dataStructures` package contains reusable implementations. Each structure has a `tester` subpackage with a runnable example demonstrating its methods.
+
+The `algorithms` package contains complete implementations of algorithms covered in class. Each algorithm has its own subpackage and a runnable example under `tester/`.
 
 ## Credits
 

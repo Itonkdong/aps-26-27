@@ -9,6 +9,7 @@ public class Main
         runCase(3, 8, 0, 1);
         runCase(4, 8, 8, 1);
         runCase(5, 30, 15, 155117520);
+        runCase(6, 100, 15, 253338471349988640L);
     }
 
     private static void runCase(int number, int n, int k, long expected)

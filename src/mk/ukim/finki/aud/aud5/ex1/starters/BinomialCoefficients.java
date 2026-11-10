@@ -22,7 +22,7 @@ public class BinomialCoefficients
      * @param k the coefficient index, from 0 to n
      * @return C(n, k)
      */
-    public int coefficient(int n, int k)
+    public long coefficient(int n, int k)
     {
         // TODO: Implement this method.
         return 0;

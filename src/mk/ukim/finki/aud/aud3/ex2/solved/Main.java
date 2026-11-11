@@ -6,6 +6,6 @@ public class Main
     {
         String expression = "5  9 + 2 * 6 5 * +";
         PostfixEvaluator exercise = new PostfixEvaluator();
-        System.out.println("Result: " + exercise.evaluate(expression));
+        System.out.println("Result: " + exercise.evaluateExpression(expression));
     }
 }

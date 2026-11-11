@@ -2,6 +2,9 @@ package mk.ukim.finki.aud.aud3.ex2.solved;
 
 import mk.ukim.finki.dataStructures.stack.LinkedStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <h2>Exercise 2: Evaluating a Postfix Expression</h2>
  *
@@ -35,9 +38,40 @@ public class PostfixEvaluator
      * @param expression the postfix expression to evaluate
      * @return the computed value, or null if the expression is invalid
      */
-    public Double evaluate(String expression)
+    public Double evaluateExpression(String expression)
     {
-        // TODO: Implement this method; null is a placeholder return value.
-        return null;
+        String[] value = expression.split("\\s+");
+
+        LinkedStack<Double> stack = new LinkedStack<>();
+
+        ArrayList<String> operators = new ArrayList<>(List.of("+", "-", "/", "*", "x"));
+
+        for (String element : value)
+        {
+            if (!operators.contains(element))
+            {
+                stack.push(Double.parseDouble(element));
+            }
+            else
+            {
+                Double result = evaluateExpression(stack.pop(), stack.pop(), element);
+                stack.push(result);
+            }
+        }
+        return stack.pop();
+    }
+
+    public Double evaluateExpression(Double number1, Double number2, String operator)
+    {
+
+        return switch (operator)
+        {
+            case "+" -> number1 + number2;
+            case "-" -> number1 - number2;
+            case "*", "x" -> number1 * number2;
+            case "/" -> number1 / number2;
+            default -> 0.0;
+        };
+
     }
 }

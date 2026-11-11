@@ -25,14 +25,29 @@ public class MinimumFlightCost
     /**
      * Finds the minimum total cost of the journey.
      *
-     * @param taxes airport taxes in west-to-east city order
+     * @param taxes  airport taxes in west-to-east city order
      * @param prices ticket prices, where prices[i][j] is the price from city i to city j
      *               in zero-based array indices, and only entries with i less than j are used
      * @return the minimum total of ticket prices and airport taxes
      */
     public int minimumCost(int[] taxes, int[][] prices)
     {
-        // TODO: Implement this method.
-        return 0;
+        int[] dp = new int[taxes.length];
+        dp[0] = taxes[0];
+        for (int city = 1; city < dp.length; city++)
+        {
+            int min = Integer.MAX_VALUE;
+            for (int previousCity = 0; previousCity <= city - 1; previousCity++)
+            {
+                int total = dp[previousCity] + prices[previousCity][city];
+                if (total < min)
+                {
+                    min = total;
+                }
+            }
+            dp[city] = taxes[city] + min;
+        }
+
+        return dp[dp.length - 1];
     }
 }

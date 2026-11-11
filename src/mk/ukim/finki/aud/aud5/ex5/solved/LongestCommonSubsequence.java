@@ -22,20 +22,38 @@ public class LongestCommonSubsequence
     /**
      * Finds the length of a longest common subsequence.
      *
-     * @param first the first string
+     * @param first  the first string
      * @param second the second string
      * @return the length of a longest common subsequence
      */
     public int length(String first, String second)
     {
-        // TODO: Implement this method.
-        return 0;
+        int[][] dp = new int[first.length() + 1][second.length() + 1];
+
+        for (int i = 1; i <= first.length(); i++)
+        {
+            int adjustedI = i - 1;
+            for (int j = 1; j <= second.length(); j++)
+            {
+                int adjustedJ = j - 1;
+                if (first.charAt(adjustedI) == second.charAt(adjustedJ))
+                {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                }
+                else
+                {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[first.length()][second.length()];
+
     }
 
     /**
      * Finds a longest common subsequence.
      *
-     * @param first the first string
+     * @param first  the first string
      * @param second the second string
      * @return a longest common subsequence of the two strings
      */

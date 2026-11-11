@@ -24,7 +24,19 @@ public class BinomialCoefficients
      */
     public long coefficient(int n, int k)
     {
-        // TODO: Implement this method.
-        return 0;
+        long[][] dp = new long[n + 1][k + 2];
+
+        dp[0][1] = 1;
+
+        for (int i = 1; i <= n; i++)
+        {
+            for (int j = 1; j <= k + 1; j++)
+            {
+                dp[i][j] = dp[i - 1][j] + dp[i - 1][j - 1];
+            }
+        }
+
+        return dp[n][k + 1];
+
     }
 }

@@ -29,7 +29,24 @@ public class MarsRobot
      */
     public int maximumStones(int[][] stones)
     {
-        // TODO: Implement this method.
-        return 0;
+        int[][] dp = new int[stones.length + 1][stones[0].length + 1];
+
+        for (int row = 1; row < dp.length; row++)
+        {
+            for (int col = 1; col < dp[0].length; col++)
+            {
+                int adjustedRow = row - 1;
+                int adjustedCol = col - 1;
+                int max = Math.max(
+                        dp[row - 1][col],
+                        dp[row][col - 1]
+                );
+
+                dp[row][col] = stones[adjustedRow][adjustedCol] + max;
+
+            }
+        }
+
+        return dp[dp.length - 1][dp[0].length - 1];
     }
 }

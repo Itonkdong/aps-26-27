@@ -29,14 +29,31 @@ public class CoinChange
     /**
      * Finds the fewest coins needed to form the target sum.
      *
-     * @param coins the available denominations
-     * @param sum the nonnegative sum to form
+     * @param coins      the available denominations
+     * @param sum        the nonnegative sum to form
      * @param coinCounts the output counts, in the order of the denominations
      * @return the total number of coins used
      */
     public int minimumCoins(int[] coins, int sum, int[] coinCounts)
     {
-        // TODO: Implement this method.
-        return 0;
+        int[] dp = new int[sum + 1];
+
+        for (int currentSum = 1; currentSum <= sum; currentSum++)
+        {
+            int min = Integer.MAX_VALUE;
+            for (int coin : coins)
+            {
+                int remainingSum = currentSum - coin;
+                if (remainingSum < 0) continue;
+                int neededCoinForTheRemainingSum = dp[remainingSum];
+                if (neededCoinForTheRemainingSum < min)
+                {
+                    min = neededCoinForTheRemainingSum;
+                }
+            }
+            dp[currentSum] = 1 + min;
+
+        }
+        return dp[sum];
     }
 }

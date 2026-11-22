@@ -42,7 +42,7 @@ public class ClosestPoints
      */
     public double minimumDistance(Point[] points)
     {
-        double minDistance = 100000;
+        double minDistance = Double.POSITIVE_INFINITY;
         for (int i = 0; i < points.length; i++)
         {
             for (int j = i + 1; j < points.length; j++)

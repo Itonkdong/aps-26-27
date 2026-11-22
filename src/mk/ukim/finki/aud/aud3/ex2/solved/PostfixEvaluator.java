@@ -39,7 +39,11 @@ public class PostfixEvaluator
      */
     public Double evaluateExpression(String expression)
     {
-        String[] value = expression.split("\\s+");
+        if (expression == null || expression.isBlank())
+        {
+            return null;
+        }
+        String[] value = expression.trim().split("\\s+");
 
         LinkedStack<Double> stack = new LinkedStack<>();
 
@@ -49,15 +53,28 @@ public class PostfixEvaluator
         {
             if (!operators.contains(element))
             {
-                stack.push(Double.parseDouble(element));
+                try
+                {
+                    stack.push(Double.parseDouble(element));
+                }
+                catch (NumberFormatException error)
+                {
+                    return null;
+                }
             }
             else
             {
-                Double result = evaluateExpression(stack.pop(), stack.pop(), element);
+                if (stack.size() < 2)
+                {
+                    return null;
+                }
+                Double right = stack.pop();
+                Double left = stack.pop();
+                Double result = evaluateExpression(left, right, element);
                 stack.push(result);
             }
         }
-        return stack.pop();
+        return stack.size() == 1 ? stack.pop() : null;
     }
 
     public Double evaluateExpression(Double number1, Double number2, String operator)

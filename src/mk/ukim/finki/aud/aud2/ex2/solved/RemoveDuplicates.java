@@ -1,6 +1,7 @@
 package mk.ukim.finki.aud.aud2.ex2.solved;
 
 import mk.ukim.finki.dataStructures.dll.DLL;
+import mk.ukim.finki.dataStructures.dll.DLLNode;
 
 /**
  * <h2>Exercise 2: Removing Duplicate Nodes</h2>
@@ -38,6 +39,24 @@ public class RemoveDuplicates<E extends Comparable<E>>
      */
     public void removeDuplicates(DLL<E> list)
     {
-        // TODO: Implement duplicate removal.
+        DLLNode<E> iterator = list.getFirst();
+
+        while (iterator != null)
+        {
+            E elementToCheck = iterator.element;
+            DLLNode<E> innerIterator = iterator.succ;
+            while (innerIterator!= null)
+            {
+                if (innerIterator.element.compareTo(elementToCheck) == 0)
+                {
+                    list.delete(innerIterator);
+                }
+                innerIterator = innerIterator.succ;
+            }
+
+            iterator = iterator.succ;
+        }
+
+        //  2 3 4   4 5
     }
 }

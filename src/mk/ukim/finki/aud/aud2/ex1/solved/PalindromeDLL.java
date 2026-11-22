@@ -51,7 +51,7 @@ public class PalindromeDLL
 
         while (first != null)
         {
-            if (first.element != last.element)
+            if (!first.element.equals(last.element))
             {
                 return -1;
             }

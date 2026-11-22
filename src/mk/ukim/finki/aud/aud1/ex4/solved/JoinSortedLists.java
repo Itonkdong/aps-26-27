@@ -1,6 +1,7 @@
 package mk.ukim.finki.aud.aud1.ex4.solved;
 
 import mk.ukim.finki.dataStructures.sll.SLL;
+import mk.ukim.finki.dataStructures.sll.SLLNode;
 
 /**
  * <h2>Exercise 4: Merging Two Sorted Singly Linked Lists</h2>
@@ -29,6 +30,25 @@ import mk.ukim.finki.dataStructures.sll.SLL;
  */
 public class JoinSortedLists<E extends Comparable<E>>
 {
+
+    public void addRest(SLL<E> result, SLLNode<E> current, SLLNode<E> fromWhere)
+    {
+        while (fromWhere != null)
+        {
+            if (current == null)
+            {
+                result.insertFirst(fromWhere.element);
+                current = result.getFirst();
+            }
+            else
+            {
+                result.insertAfter(fromWhere.element, current);
+                current = current.succ;
+            }
+            fromWhere = fromWhere.succ;
+        }
+    }
+
     /**
      * Merges the two sorted lists into a single sorted list.
      *
@@ -38,7 +58,60 @@ public class JoinSortedLists<E extends Comparable<E>>
      */
     public SLL<E> join(SLL<E> list1, SLL<E> list2)
     {
-        // TODO: Implement this method; null is a placeholder return value.
-        return null;
+        SLL<E> sorted = new SLL<>();
+        SLLNode<E> currentFrom1 = list1.getFirst();
+        SLLNode<E> currentFrom2 = list2.getFirst();
+
+        if (currentFrom1 == null)
+        {
+            addRest(sorted, null, currentFrom2);
+            return sorted;
+        }
+        if (currentFrom2 == null)
+        {
+            addRest(sorted, null, currentFrom1);
+            return sorted;
+        }
+
+        if (currentFrom1.element.compareTo(currentFrom2.element) < 0)
+        {
+            sorted.insertFirst(currentFrom1.element);
+            currentFrom1 = currentFrom1.succ;
+        }
+        else
+        {
+            sorted.insertFirst(currentFrom2.element);
+            currentFrom2 = currentFrom2.succ;
+        }
+
+        SLLNode<E> current = sorted.getFirst();
+
+        while (true)
+        {
+            if (currentFrom1 == null)
+            {
+                addRest(sorted, current, currentFrom2);
+                return sorted;
+            }
+
+            if (currentFrom2 == null)
+            {
+                addRest(sorted, current, currentFrom1);
+                return sorted;
+            }
+
+            if (currentFrom1.element.compareTo(currentFrom2.element) < 0)
+            {
+                sorted.insertAfter(currentFrom1.element, current);
+                currentFrom1 = currentFrom1.succ;
+                current = current.succ;
+            }
+            else
+            {
+                sorted.insertAfter(currentFrom2.element, current);
+                currentFrom2 = currentFrom2.succ;
+                current = current.succ;
+            }
+        }
     }
 }

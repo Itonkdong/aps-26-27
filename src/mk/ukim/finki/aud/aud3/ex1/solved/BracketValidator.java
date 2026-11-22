@@ -67,7 +67,7 @@ public class BracketValidator
                     return  false;
                 }
 
-                if (!areMatching(aChar, stack.pop()))
+                if (!areMatching(stack.pop(), aChar))
                 {
                     return false;
                 }

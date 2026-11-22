@@ -4,16 +4,36 @@ public class Main
 {
     public static void main(String[] args)
     {
-        String expression = "s x (s - a) x (s - b) x (s - c)";
-        // String expression = "s x (s - a) x s - b) x (s - c)";
+        runCase(1, "s x (s - a) x (s - b) x (s - c)", true);
+        runCase(2, "{a + [b * (c - d)]}", true);
+        runCase(3, "([)]", false);
+        runCase(4, ")(", false);
+        runCase(5, "((a + b)", false);
+    }
 
+    private static void runCase(int number, String expression, boolean expected)
+    {
+        System.out.printf("Case %d: %s%n", number, expression);
         BracketValidator exercise = new BracketValidator();
-        System.out.println("Expression: " + expression);
-        System.out.println("Array stack: "
-                + (exercise.hasValidBracketsArray(expression) ? "valid" : "invalid")
-                + " brackets.");
-        System.out.println("Linked stack: "
-                + (exercise.hasValidBracketsLinked(expression) ? "valid" : "invalid")
-                + " brackets.");
+        try
+        {
+            boolean actual = exercise.hasValidBracketsArray(expression);
+            System.out.printf("  Array variant | Expected: %s | Actual: %s | %s%n",
+                    expected, actual, actual == expected ? "PASS" : "FAIL");
+        }
+        catch (RuntimeException error)
+        {
+            System.out.println("  Array variant | FAIL: " + error);
+        }
+        try
+        {
+            boolean actual = exercise.hasValidBracketsLinked(expression);
+            System.out.printf("  Linked variant | Expected: %s | Actual: %s | %s%n",
+                    expected, actual, actual == expected ? "PASS" : "FAIL");
+        }
+        catch (RuntimeException error)
+        {
+            System.out.println("  Linked variant | FAIL: " + error);
+        }
     }
 }

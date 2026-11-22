@@ -4,12 +4,36 @@ public class Main
 {
     public static void main(String[] args)
     {
-        int base = 2;
-        int exponent = 10;
+        runCase(1, 2, 10, 1024);
+        runCase(2, 7, 0, 1);
+        runCase(3, 0, 5, 0);
+        runCase(4, -3, 3, -27);
+        runCase(5, -2, 4, 16);
+    }
 
+    private static void runCase(int number, int base, int exponent, int expected)
+    {
+        System.out.printf("Case %d: Base %d, exponent %d%n", number, base, exponent);
         PowerCalculator exercise = new PowerCalculator();
-        System.out.println("Base: " + base + ", exponent: " + exponent);
-        System.out.println("Version 1: " + exercise.pow(base, exponent));
-        System.out.println("Version 2: " + exercise.powWithRepeatedCalls(base, exponent));
+        try
+        {
+            int actual = exercise.pow(base, exponent);
+            System.out.printf("  Version 1 | Expected: %d | Actual: %d | %s%n",
+                    expected, actual, actual == expected ? "PASS" : "FAIL");
+        }
+        catch (RuntimeException error)
+        {
+            System.out.println("  Version 1 | FAIL: " + error);
+        }
+        try
+        {
+            int actual = exercise.powWithRepeatedCalls(base, exponent);
+            System.out.printf("  Version 2 | Expected: %d | Actual: %d | %s%n",
+                    expected, actual, actual == expected ? "PASS" : "FAIL");
+        }
+        catch (RuntimeException error)
+        {
+            System.out.println("  Version 2 | FAIL: " + error);
+        }
     }
 }

@@ -1,27 +1,33 @@
 package mk.ukim.finki.aud.aud1.ex2.solved;
 
 import mk.ukim.finki.dataStructures.sll.SLL;
-
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        Scanner sc = new Scanner(System.in);
+        runCase(1, new int[]{4, 5, 6, 7, 9}, 2);
+        runCase(2, new int[]{}, 0);
+        runCase(3, new int[]{1, 3, 5}, 0);
+        runCase(4, new int[]{2, 4, 6}, 3);
+        runCase(5, new int[]{0, -2, -3, 7, 10}, 3);
+    }
 
-        System.out.println("Enter the number of elements in the list:");
-        int n = sc.nextInt();
-
+    private static void runCase(int number, int[] values, int expected)
+    {
+        System.out.printf("Case %d: %s%n", number, Arrays.toString(values));
         SLL<Integer> list = new SLL<>();
-        System.out.println("Enter the list elements (integers):");
-        for (int i = 0; i < n; i++)
+        for (int value : values)
+            list.insertLast(value);
+        try
         {
-            list.insertLast(sc.nextInt());
+            int actual = new EvenNumbersSLL().evenNumbers(list);
+            System.out.printf("  Expected: %d | Actual: %d | %s%n", expected, actual, actual == expected ? "PASS" : "FAIL");
         }
-
-        EvenNumbersSLL exercise = new EvenNumbersSLL();
-        System.out.println("Number of even elements in the list: "
-                + exercise.evenNumbers(list));
+        catch (RuntimeException error)
+        {
+            System.out.println("  FAIL: " + error);
+        }
     }
 }

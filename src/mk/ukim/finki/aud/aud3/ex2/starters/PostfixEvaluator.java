@@ -20,7 +20,6 @@ import mk.ukim.finki.dataStructures.stack.LinkedStack;
  * Expression: 5  9 + 2 * 6 5 * +
  * Expected result after implementation: 58.0
  * </pre>
- * <p>The current scaffold returns null until the method is implemented.</p>
  *
  * <h3>Source</h3>
  * <p>One-Dimensional Data Structures, exercise 2

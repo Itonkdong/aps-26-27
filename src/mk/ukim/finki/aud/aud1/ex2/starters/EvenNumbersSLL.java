@@ -10,8 +10,7 @@ import mk.ukim.finki.dataStructures.sll.SLL;
  * singly linked list of integers.</p>
  *
  * <h3>Input and Output</h3>
- * <p>Main reads the number of elements followed by the list elements from
- * standard input. It then prints the number of even elements.</p>
+ * <p>Main runs five hardcoded lists and prints the expected and actual counts.</p>
  *
  * <h3>Example</h3>
  * <pre>

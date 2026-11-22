@@ -1,65 +1,46 @@
 package mk.ukim.finki.aud.aud3.ex3.solved;
 
 import mk.ukim.finki.dataStructures.queue.ArrayQueue;
-
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        runExample("Case 1: All students can be served", new Student[] {
-                new Student("231001", 60),
-                new Student("231002", 90),
-                new Student("231003", 30)
-        });
-
-        runExample("Case 2: Some students cannot be served", new Student[] {
-                new Student("231001", 60),
-                new Student("231002", 90),
-                new Student("231003", 45),
-                new Student("231004", 10)
-        });
+        runCase(1, new int[]{60, 90, 30}, null, 0);
+        runCase(2, new int[]{60, 90, 45, 10}, "231003", 2);
+        runCase(3, new int[]{181, 10}, "231001", 2);
+        runCase(4, new int[]{20, 30}, null, 0);
+        runCase(5, new int[]{}, null, 0);
     }
 
-    private static void runExample(String description, Student[] students)
+    private static void runCase(int number, int[] minutes, String expectedFirst, int expectedRemaining)
     {
-        System.out.println(description);
-        System.out.println("Students before processing:");
-        ArrayQueue<Student> studentsQueue = new ArrayQueue<>(students.length);
+        System.out.printf("Case %d: Service times %s%n", number, Arrays.toString(minutes));
+        ArrayQueue<Student> queue = new ArrayQueue<>(Math.max(1, minutes.length));
         int totalMinutes = 0;
-        for (Student student : students)
+        for (int i = 0; i < minutes.length; i++)
         {
-            System.out.println(student.index + " - " + student.minutes + " minutes");
-            totalMinutes += student.minutes;
-            studentsQueue.enqueue(student);
+            String index = String.format("231%03d", i + 1);
+            queue.enqueue(new Student(index, minutes[i]));
+            totalMinutes += minutes[i];
+            System.out.printf("  Student %s: %d minutes%n", index, minutes[i]);
         }
-        System.out.println("Total required service time: " + totalMinutes + " minutes");
-
-        StudentServiceQueue exercise = new StudentServiceQueue();
-        Student student = exercise.iterateStudentsQueue(studentsQueue);
-        if (studentsQueue.isEmpty())
+        System.out.println("  Total required time: " + totalMinutes + " minutes");
+        try
         {
-            System.out.println("All students were served.");
+            Student first = new StudentServiceQueue().iterateStudentsQueue(queue);
+            String actualFirst = first == null ? null : first.index;
+            int actualRemaining = queue.size();
+            System.out.printf("  First unserved | Expected: %s | Actual: %s | %s%n",
+                    expectedFirst, actualFirst, Objects.equals(expectedFirst, actualFirst) ? "PASS" : "FAIL");
+            System.out.printf("  Unserved count | Expected: %d | Actual: %d | %s%n",
+                    expectedRemaining, actualRemaining, expectedRemaining == actualRemaining ? "PASS" : "FAIL");
         }
-        else if (student == null)
+        catch (RuntimeException error)
         {
-            System.out.println("TODO: Implement iterateStudentsQueue to see the service results.");
+            System.out.println("  FAIL: " + error);
         }
-        else
-        {
-            System.out.println("First unserved student: " + student.index);
-            System.out.println("Number of unserved students: " + studentsQueue.size());
-        }
-        System.out.println();
-
-
-         Queue<String> queue = new LinkedList<>();
-         queue.offer("Test");
-         queue.poll();
-         queue.peek();
-         queue.isEmpty();
-         queue.size();
     }
 }

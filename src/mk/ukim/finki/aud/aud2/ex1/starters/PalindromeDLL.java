@@ -18,9 +18,7 @@ import java.util.LinkedList;
  * {@link LinkedList}. The methods return 1 for a palindrome and -1 otherwise.</p>
  *
  * <h3>Input and Output</h3>
- * <p>Main reads the number of elements followed by the integer elements
- * from standard input. It builds both list variants and prints their results
- * on separate lines: first the custom list, then the Java list.</p>
+ * <p>Main runs five hardcoded lists through both variants and prints the expected and actual results.</p>
  *
  * <h3>Example</h3>
  * <pre>

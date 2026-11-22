@@ -31,8 +31,8 @@ import mk.ukim.finki.dataStructures.stack.LinkedStack;
  * s x (s - a) x (s - b x (s - c)      invalid
  * s x (s - a) x s - b) x (s - c)      invalid
  * </pre>
- * <p>Main tests the first expression with both variants. Both should report
- * valid brackets after implementation; the current scaffold returns false.</p>
+ * <p>Main tests five expressions with both variants and prints the expected
+ * and actual results.</p>
  *
  * <h3>Source</h3>
  * <p>One-Dimensional Data Structures, exercise 1

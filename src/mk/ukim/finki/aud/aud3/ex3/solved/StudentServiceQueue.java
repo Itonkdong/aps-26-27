@@ -18,11 +18,7 @@ import mk.ukim.finki.dataStructures.queue.ArrayQueue;
  * exactly at 12:00 can be served.</p>
  *
  * <h3>Input and Output</h3>
- * <p>Main runs two hardcoded examples without reading standard input.
- * Before processing each queue, it prints every student's index number and
- * required service time, followed by the total required time. It then reports
- * either that everyone was served or the first unserved student's index and
- * the remaining count.</p>
+ * <p>Main runs five hardcoded queues. It prints the student indices and service times, then compares the first unserved student and remaining count with the expected results.</p>
  *
  * <h3>Example</h3>
  * <pre>
@@ -31,7 +27,7 @@ import mk.ukim.finki.dataStructures.queue.ArrayQueue;
  * 231002 90
  * 231003 30
  * Total: 180 minutes
- * Expected after implementation: All students were served.
+ * Expected: All students were served.
  *
  * Case 2:
  * 231001 60
@@ -39,11 +35,10 @@ import mk.ukim.finki.dataStructures.queue.ArrayQueue;
  * 231003 45
  * 231004 10
  * Total: 205 minutes
- * Expected after implementation:
+ * Expected:
  * First unserved student: 231003
  * Number of unserved students: 2
  * </pre>
- * <p>Until implementation, Main prints a TODO message for a nonempty queue.</p>
  *
  * <h3>Source</h3>
  * <p>One-Dimensional Data Structures, exercise 3

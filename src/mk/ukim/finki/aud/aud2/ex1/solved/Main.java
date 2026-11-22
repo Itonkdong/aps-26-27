@@ -1,29 +1,50 @@
 package mk.ukim.finki.aud.aud2.ex1.solved;
 
 import mk.ukim.finki.dataStructures.dll.DLL;
-
+import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        DLL<Integer> customList = new DLL<>();
-        LinkedList<Integer> javaList = new LinkedList<>();
+        runCase(1, new int[]{1, 2, 3, 2, 1}, 1);
+        runCase(2, new int[]{1000, 2000, 2000, 1000}, 1);
+        runCase(3, new int[]{1, 2, 3}, -1);
+        runCase(4, new int[]{9}, 1);
+        runCase(5, new int[]{}, 1);
+    }
 
-        for (int i = 0; i < n; i++)
+    private static void runCase(int number, int[] values, int expected)
+    {
+        System.out.printf("Case %d: %s%n", number, Arrays.toString(values));
+        DLL<Integer> custom = new DLL<>();
+        LinkedList<Integer> standard = new LinkedList<>();
+        for (int value : values)
         {
-            int value = in.nextInt();
-            customList.insertLast(value);
-            javaList.add(value);
+            custom.insertLast(value);
+            standard.add(value);
         }
-        in.close();
-
         PalindromeDLL exercise = new PalindromeDLL();
-        System.out.println(exercise.isItPalindrome(customList));
-        System.out.println(exercise.isItPalindrome(javaList));
+        try
+        {
+            int actual = exercise.isItPalindrome(custom);
+            System.out.printf("  DLL | Expected: %d | Actual: %d | %s%n",
+                    expected, actual, actual == expected ? "PASS" : "FAIL");
+        }
+        catch (RuntimeException error)
+        {
+            System.out.println("  DLL | FAIL: " + error);
+        }
+        try
+        {
+            int actual = exercise.isItPalindrome(standard);
+            System.out.printf("  LinkedList | Expected: %d | Actual: %d | %s%n",
+                    expected, actual, actual == expected ? "PASS" : "FAIL");
+        }
+        catch (RuntimeException error)
+        {
+            System.out.println("  LinkedList | FAIL: " + error);
+        }
     }
 }
